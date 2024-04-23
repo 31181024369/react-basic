@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './DisplayInfor.scss';
 import logo from './../logo.svg';
 
 const DisPlayInfor=(props)=>{
 
     const { listUsers, handleDeleteUser}=props;
+    const [showHideListUser,setShowHideListUser]=useState(true);
+    const handShowHideListUser=()=>{
+        setShowHideListUser(!showHideListUser);
+    }
+    useEffect(()=>{
+        if(listUsers.length===0){
+            alert('you delete user all');
+        }
+    },[listUsers]);
     return (
         <div className='display-info-container'>
+            <div onClick={()=>{handShowHideListUser()}}>
+                {showHideListUser ? "hide listUser" : "show listUser"}
+            </div>
                         
             <div>
-                {true && listUsers.map((user,index)=>{
+                {showHideListUser && listUsers.map((user,index)=>{
                     return (
                             <div key={user.id} className={+user.age > 18 ? "green":"red"}>
                                 <div>

@@ -1,46 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
-class UserInfor extends React.Component {
-    state={
-        name:'longhoang',
-        address:'hoi dan it',
-        age:23
-    };
-    handleClick(event){
-        console.log(">> click me by button");
-        this.setState({
-            name:'long dex',
-            age:Math.floor((Math.random() * 100) + 1)
-        });
-      
+const UserInfor=(props)=>{
+    const [name,setName]=useState("");
+    const [address,setAddress]=useState('hoi dan it');
+    const [age,setAge]=useState("");
+    const {handleAddNewUser }=props;
+    const handOnchangeName=(event)=>{
+        setName(event.target.value);
     }
-    handOnMoverOver(event){
-        console.log(event.pageX);
-    }
-    handOnchangeName=(event)=>{
-        this.setState({name: event.target.value});
-    }
-    handOnSubmit=(event)=>{
+    const handOnSubmit=(event)=>{
         event.preventDefault();
-        this.props.handleAddNewUser({
+        handleAddNewUser({
             id:Math.floor(Math.random() * 100),
-            name:this.state.name,
-            age:this.state.age
+            name:name,
+            age:age
         });
         //console.log(this.state);
     }
-    handOnchangeAge=(event)=>{
-        this.setState({age: event.target.value});
+    const handOnchangeAge=(event)=>{
+        setAge(event.target.value);
     }
-    render(){
-        return (
+    return (
             <div>
-                my name is {this.state.name} and my age is {this.state.age}
-                <form onSubmit={(event)=>{this.handOnSubmit(event)}}>
+                my name is {name} and my age is {age}
+                <form onSubmit={(event)=>{handOnSubmit(event)}}>
                     <label>user</label>
-                    <input onChange={(event)=>{this.handOnchangeName(event)}} value={this.state.name} type="text"></input>
+                    <input onChange={(event)=>{handOnchangeName(event)}} value={name} type="text"></input>
                     <label>age</label>
-                    <input type="text" value={this.state.age} onChange={(event)=>{this.handOnchangeAge(event)}}></input>
+                    <input type="text" value={age} onChange={(event)=>{handOnchangeAge(event)}}></input>
                  
                     <button type="submit">submit</button>
 
@@ -48,8 +35,11 @@ class UserInfor extends React.Component {
                 {/* <button onMouseOver={this.handOnMoverOver}>hover me</button>
                 <button onClick={(event)=>{this.handleClick(event) }}>click me</button> */}
             </div>
-        )
 
-    };
+    );
+
+
+
+
 }
 export default UserInfor;
