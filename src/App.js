@@ -1,11 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import Mycomponent from './components/Mycomponent';
+import Header from './components/Header/Header';
+import { Link } from 'react-router-dom';
 
-function App() {
+
+const App=()=>{
   return (
-    <Mycomponent></Mycomponent>
-  );
+    <div className='app-container'>
+     <Header></Header>
+     <div>
+      test Link
+      <div>
+        <button>
+          <Link to="/admin">go to admin page</Link>
+        </button>
+        <button>
+          <Link to="/user">go to user page</Link>
+        </button>
+      </div>
+     </div>
+    </div>
+  )
 }
 
 export default App;
