@@ -1,0 +1,106 @@
+.App {
+  text-align: center;
+}
+
+@media (min-width: 1350px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1300px !important;
+  }
+}
+.app-container .header-container .btn-login {
+  border-radius: 5px;
+  padding: 0 15px;
+  margin-right: 15px;
+  border: 1px solid #ccc;
+  height: 40px;
+}
+.app-container .header-container .btn-signup {
+  border-radius: 5px;
+  padding: 0 15px;
+  background: #303030;
+  color: white;
+  height: 40px;
+}
+.app-container .header-container .btn-signup:hover {
+  background: black;
+}
+.app-container .homepage-container .homepage-content {
+  padding: 100px;
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.app-container .homepage-container .homepage-content .title-1 {
+  font-size: 45px;
+  font-weight: 600px;
+}
+.app-container .homepage-container .homepage-content .title-2 {
+  font-size: 25px;
+}
+.app-container .homepage-container .homepage-content .title-3 button {
+  border-radius: 5px;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0 15px;
+  background: #303030;
+  color: white;
+}
+.app-container .homepage-container .homepage-content .title-3 button:hover {
+  background: black;
+}
+.app-container .navbar {
+  padding-top: 20px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+.app-container .navbar .nav-link.active {
+  color: red;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+video {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
+
+/* .green{
+  color: green;
+}
+.red{
+  color: red;
+} *//*# sourceMappingURL=App.css.map */
