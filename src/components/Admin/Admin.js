@@ -3,7 +3,7 @@ import SideBar from './SideBar';
 import './Admin.scss';
 import { FaHeart, FaBars } from 'react-icons/fa';
 const Admin = () => {
-    const [collapsed,setCollapsed]=useState(true);
+    const [collapsed,setCollapsed]=useState(false);
     return (
         <div className='admin-container'>
             <div className='admin-sidebar'>

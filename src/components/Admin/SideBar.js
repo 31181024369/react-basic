@@ -1,6 +1,7 @@
 import React from "react";
 
 import "react-pro-sidebar/dist/css/styles.css";
+import { DiReact } from "react-icons/di";
 
 import {
     ProSidebar,
@@ -37,6 +38,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               whiteSpace: "nowrap",
             }}
           >
+            <DiReact size={'3em'} color={"00bfff"} />
             hoi dan it
           </div>
         </SidebarHeader>
@@ -53,10 +55,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
             >
               Dashboard
             </MenuItem>
-            <MenuItem icon={<FaGem />}>
-              {" "}
-              components
-            </MenuItem>
+          
           </Menu>
           <Menu iconShape="circle">
             <SubMenu
@@ -64,9 +63,9 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
            
               icon={<FaRegLaughWink />}
             >
-              <MenuItem> 1</MenuItem>
-              <MenuItem> 2</MenuItem>
-              <MenuItem> 3</MenuItem>
+              <MenuItem> Quản lý Users</MenuItem>
+              <MenuItem> Quản lý bài Quiz</MenuItem>
+              <MenuItem> Quản lý câu hỏi</MenuItem>
             </SubMenu>
            
           </Menu>
