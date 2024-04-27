@@ -14,6 +14,7 @@ import {
   } from 'react-pro-sidebar';
   import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
   import sidebarBg from '../../../src/assets/bg2.jpg';
+import { Link } from "react-router-dom";
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
   return (
     <div>
@@ -54,6 +55,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               }
             >
               Dashboard
+              <Link to="/admin" />
             </MenuItem>
           
           </Menu>
@@ -63,7 +65,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
            
               icon={<FaRegLaughWink />}
             >
-              <MenuItem> Quản lý Users</MenuItem>
+              <MenuItem> Quản lý Users <Link to="/admin/manage-users" /></MenuItem>
               <MenuItem> Quản lý bài Quiz</MenuItem>
               <MenuItem> Quản lý câu hỏi</MenuItem>
             </SubMenu>
