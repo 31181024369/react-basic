@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -8,26 +8,42 @@ import Row from 'react-bootstrap/Row';
 import { FcPlus } from "react-icons/fc";
 
 import { toast } from 'react-toastify';
-import { postCreateNewUser } from '../../../services/apiService';
+import { putUpdateUser } from '../../../services/apiService';
+import _ from 'lodash';
 
-const ModelCreateUser = (props) => {
-    const {show,setShow, fetchListUsers}=props;
+const ModelUpdateUser = (props) => {
+    const {show,setShow, fetchListUsers,dataUpdate,resetUpdateData}=props;
     const handleClose = () =>{
       setShow(false)
       setEmail("");
       setPassword("")
       setUsername("");
-      SetRole("User");
+      setRole("User");
       setPreviewImage("");
       setImage("");
+    //   resetUpdateData();
+
     };
     const handleShow = () => setShow(true);
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const [username,setUsername]=useState("");
-    const [role,SetRole]=useState("User");
+    const [role,setRole]=useState("User");
     const [image,setImage]=useState("");
     const [previewImage,setPreviewImage]=useState("");
+
+    useEffect(()=>{
+        if(!_.isEmpty(dataUpdate)){
+            setUsername(dataUpdate.username);
+            setEmail(dataUpdate.email);
+            setRole(dataUpdate.role);
+            setImage("");
+            if(dataUpdate.image){
+                setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+            }
+        }
+        
+    },[dataUpdate]);
     const handleUploadImage=(event)=>{
       if(event.target && event.target.files && event.target.files[0]){
         setPreviewImage(URL.createObjectURL(event.target.files[0]));
@@ -48,7 +64,7 @@ const ModelCreateUser = (props) => {
     };
 
 
-    const handSubmitCreateUser= async ()=>{
+    const handSubmitUpdateUser= async ()=>{
      
       const isValidEmail=validateEmail(email);
       if(!isValidEmail){
@@ -56,13 +72,9 @@ const ModelCreateUser = (props) => {
         return ;
       }
 
-      if(!password){
-        toast.error('invalid password');
-        return ;
-      }
+     
 
-      let data=await postCreateNewUser(email,password,username,role,image);
-      console.log("data",data);
+      let data=await putUpdateUser(dataUpdate.id,username,role,image);
       if(data && data.EC===0){
         toast.success(data.EM);
         handleClose();
@@ -78,7 +90,7 @@ const ModelCreateUser = (props) => {
       <>
         <Modal show={show} onHide={handleClose} size="xl" backdrop="static" className="model-add-user">
           <Modal.Header closeButton>
-            <Modal.Title> Add new user</Modal.Title>
+            <Modal.Title> Update a user</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <Form>
@@ -89,6 +101,7 @@ const ModelCreateUser = (props) => {
            placeholder="Enter email"
            onChange={(event)=>setEmail(event.target.value)}
            value={email}
+           disabled
             />
         </Form.Group>
 
@@ -98,6 +111,7 @@ const ModelCreateUser = (props) => {
            placeholder="Password"
            value={password}
            onChange={(event)=>{setPassword(event.target.value)}}
+           disabled
             />
         </Form.Group>
       </Row>
@@ -117,7 +131,7 @@ const ModelCreateUser = (props) => {
         <Form.Group as={Col}>
           <Form.Label>Role</Form.Label>
           <Form.Select  
-          onChange={(event)=>{SetRole(event.target.value)}}
+          onChange={(event)=>{setRole(event.target.value)}}
           value={role}
           >
             <option value="USER">USER</option>
@@ -149,7 +163,7 @@ const ModelCreateUser = (props) => {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={()=>{handSubmitCreateUser()}}>
+            <Button variant="primary" onClick={()=>{handSubmitUpdateUser()}}>
               Save Changes
             </Button>
           </Modal.Footer>
@@ -158,4 +172,4 @@ const ModelCreateUser = (props) => {
     );
 };
 
-export default ModelCreateUser;
+export default ModelUpdateUser;
