@@ -5,12 +5,15 @@ import { FcPlus } from "react-icons/fc";
 import TableUser from './TableUser';
 import { getAllUsers } from '../../../services/apiService';
 import ModelUpdateUser from './ModelUpdateUser';
+import ModelDeleteUser from './ModelDeleteUser';
 
 const ManageUser = () => {
     const [showModelCreateUser,setShowModelCreateUser]=useState(false);
     const [showModelUpdateUser,setShowModelUpdateUser]=useState(false);
+    const [showModelDeleteUser,setShowModelDeleteUser]=useState(false);
     const [listUsers,setListUsers]=useState([]);
     const [dataUpdate,setDataUpdate]=useState({});
+    const [dataDelete,setDataDelete]=useState({});
     useEffect(()=>{
         fetchListUsers();
 
@@ -30,6 +33,11 @@ const ManageUser = () => {
     const resetUpdateData=()=>{
         setDataUpdate({});
     }
+    const handleClickBtnDelete=(user)=>{
+        setShowModelDeleteUser(true);
+        setDataDelete(user);
+        console.log(user);
+    }
     return (
         <div className="manage-user-container">
             <div className='title'>
@@ -46,21 +54,29 @@ const ManageUser = () => {
                     <TableUser 
                     listUsers={listUsers}
                     handleClickBtnUpdate={handleClickBtnUpdate}
+                    handleClickBtnDelete={handleClickBtnDelete}
                    
                      ></TableUser>
                     <ModelCreateUser
-                    show={showModelCreateUser}
-                    setShow={setShowModelCreateUser}
-                    fetchListUsers={fetchListUsers}
+                        show={showModelCreateUser}
+                        setShow={setShowModelCreateUser}
+                        fetchListUsers={fetchListUsers}
                     ></ModelCreateUser>
 
                     <ModelUpdateUser
-                    show={showModelUpdateUser}
-                    setShow={setShowModelUpdateUser}
-                    fetchListUsers={fetchListUsers}
-                    dataUpdate={dataUpdate}
-                    resetUpdateData={resetUpdateData}
+                        show={showModelUpdateUser}
+                        setShow={setShowModelUpdateUser}
+                        fetchListUsers={fetchListUsers}
+                        dataUpdate={dataUpdate}
+                        resetUpdateData={resetUpdateData}
                     ></ModelUpdateUser>
+
+                    < ModelDeleteUser
+                        show={showModelDeleteUser}
+                        setShow={setShowModelDeleteUser}
+                        dataDelete={dataDelete}
+                        fetchListUsers={fetchListUsers}
+                    ></ModelDeleteUser>
                 </div>
             </div>
         </div>

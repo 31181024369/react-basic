@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAllUsers } from '../../../services/apiService';
 
 const TableUser = (props) => {
-    const {listUsers,handleClickBtnUpdate}=props;
+    const {listUsers,handleClickBtnUpdate,handleClickBtnDelete}=props;
     
     return (
         <>
@@ -31,7 +31,9 @@ const TableUser = (props) => {
                                 className='btn btn-warning mx-3'
                                 onClick={()=>{handleClickBtnUpdate(item)}}
                                 >Update</button>
-                                <button className='btn btn-danger'>Delete</button>
+                                <button className='btn btn-danger'
+                                onClick={()=>{handleClickBtnDelete(item)}}
+                                >Delete</button>
                             </td>
                         </tr>
 
