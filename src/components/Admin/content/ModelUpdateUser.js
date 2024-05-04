@@ -12,7 +12,7 @@ import { putUpdateUser } from '../../../services/apiService';
 import _ from 'lodash';
 
 const ModelUpdateUser = (props) => {
-    const {show,setShow, fetchListUsers,dataUpdate,resetUpdateData}=props;
+    const {show,setShow, fetchListUsers,dataUpdate,resetUpdateData, currentPage, setCurrentPage,fetchListUsersWithPaginate}=props;
     const handleClose = () =>{
       setShow(false)
       setEmail("");
@@ -78,7 +78,8 @@ const ModelUpdateUser = (props) => {
       if(data && data.EC===0){
         toast.success(data.EM);
         handleClose();
-        await fetchListUsers();
+        // await fetchListUsers();
+        await fetchListUsersWithPaginate(currentPage);
       }
       if(data && data.EC!==0){
         toast.error(data.EM);

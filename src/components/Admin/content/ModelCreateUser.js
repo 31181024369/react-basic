@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { postCreateNewUser } from '../../../services/apiService';
 
 const ModelCreateUser = (props) => {
-    const {show,setShow, fetchListUsers}=props;
+    const {show,setShow, fetchListUsers, currentPage, setCurrentPage,fetchListUsersWithPaginate}=props;
     const handleClose = () =>{
       setShow(false)
       setEmail("");
@@ -66,7 +66,9 @@ const ModelCreateUser = (props) => {
       if(data && data.EC===0){
         toast.success(data.EM);
         handleClose();
-        await fetchListUsers();
+        // await fetchListUsers();
+        setCurrentPage(1);
+        await fetchListUsersWithPaginate();
       }
       if(data && data.EC!==0){
         toast.error(data.EM);
