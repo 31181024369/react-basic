@@ -1,0 +1,50 @@
+.contaner-register{
+    width: 1400px;
+    margin: 0px auto;
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 10px;
+        gap: 15px;
+        button{
+            border-radius: 5px;
+            border: none;
+            border: 1px solid;
+            width: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                background:#fff;
+            }
+        }
+       
+    }
+    .form-register{
+        button{
+            background-color: black;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .pass-group{
+            position: relative;
+            .icons-eye{
+                position: absolute;
+                top: 20px;
+                right: 10px;
+            }
+        }
+    }
+}

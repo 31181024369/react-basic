@@ -1,0 +1,47 @@
+.contaner-register {
+  width: 1400px;
+  margin: 0px auto;
+}
+.contaner-register .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 10px;
+  gap: 15px;
+}
+.contaner-register .header button {
+  border-radius: 5px;
+  border: none;
+  border: 1px solid;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contaner-register .header button:hover {
+  background: #fff;
+}
+.contaner-register .form-register button {
+  background-color: black;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+.contaner-register .form-register span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.contaner-register .form-register .pass-group {
+  position: relative;
+}
+.contaner-register .form-register .pass-group .icons-eye {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}/*# sourceMappingURL=Register.css.map */
