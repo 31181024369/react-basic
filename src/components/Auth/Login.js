@@ -3,10 +3,12 @@ import './Login.scss';
 import { NavLink,Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { postLogin } from '../../services/apiService';
+
 const Login = (props) => {
     const navigate=useNavigate();
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+   
 
     const validateEmail = (email) => {
         return String(email)

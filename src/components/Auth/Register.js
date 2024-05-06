@@ -6,6 +6,7 @@ import axios from 'axios';
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { postRegister } from '../../services/apiService';
+
 const Register = () => {
     const navigate = useNavigate();
     const [email,setEmail]=useState("");
@@ -19,7 +20,12 @@ const Register = () => {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           );
       };
-      const handleRegister= async()=>{
+      const handleRegister= async(event)=>{
+        event.preventDefault()
+
+        event.stopPropagation();
+
+       
         const isValidEmail=validateEmail(email,password,username);
         if(!isValidEmail){
             toast.error('Invalid email');
@@ -32,7 +38,7 @@ const Register = () => {
         let data=await postRegister(email,password,username);
         if(data && data.EC===0){
             toast.success(data.EM);
-            navigate('/login');
+            // navigate('/login');
         }
         if(data && data.EC!==0){
             toast.error(data.EM);
@@ -91,12 +97,12 @@ const Register = () => {
                 </div>
                 <button 
                  className="btn btn-primary mt-4"
-                 onClick={()=>{handleRegister()}}
+                 onClick={(event)=>{handleRegister(event)}}
                   >Submit</button>
                 <span onClick={()=>{ navigate('/')}}>&#60;&#60;Go to Homepage</span>
             </form>
 
-            </div>s
+            </div>
 
         </div>
 
