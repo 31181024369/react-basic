@@ -26,6 +26,19 @@
         padding: 10px 0;
     }
     .content-form{
+        .loaderIcon{
+            margin-right: 7px;
+            top: 2px;
+            animation: spin 1s infinite linear;
+        }
+        @keyframes spin {
+            from {
+                transform: scale(1) rotate(0deg);
+            }
+            to {
+                transform: scale(1) rotate(360deg);
+            }
+        }
         input{
             margin-bottom: 15px;
             margin-top: 3px;
@@ -38,6 +51,12 @@
             margin: 20px 0;
             color: white;
             background: black;
+
+            &:disabled{
+                background: #dddddd;
+                color: #afafaf;
+                cursor: no-drop;
+            }
         }
         .back{
             cursor: pointer;
