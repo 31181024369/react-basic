@@ -14,8 +14,10 @@ import {
   } from 'react-pro-sidebar';
   import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
   import sidebarBg from '../../../src/assets/bg2.jpg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
+  const navigate=useNavigate();
   return (
     <div>
       <ProSidebar
@@ -40,7 +42,8 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
             }}
           >
             <DiReact size={'3em'} color={"00bfff"} />
-            hoi dan it
+            <span onClick={()=>{navigate('/')}}> hoi dan it</span>
+           
           </div>
         </SidebarHeader>
 
@@ -64,9 +67,10 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               suffix={<span className="badge yellow">3</span>}
            
               icon={<FaRegLaughWink />}
+              title="Features"
             >
               <MenuItem> Quản lý Users <Link to="/admin/manage-users" /></MenuItem>
-              <MenuItem> Quản lý bài Quiz</MenuItem>
+              <MenuItem> Quản lý bài Quiz <Link to="/admin/manage-quiz" /></MenuItem>
               <MenuItem> Quản lý câu hỏi</MenuItem>
             </SubMenu>
            
