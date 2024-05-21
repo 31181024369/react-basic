@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './MangageQuiz.scss';
 import Select from 'react-select';
 import {postCreateNewQuiz} from '../../../../services/apiService';
+import { toast } from 'react-toastify';
+import TableQuiz from './TableQuiz';
+import Accordion from 'react-bootstrap/Accordion';
 const options = [
     { value: 'EASY', label: 'EASY' },
     { value: 'MEDIUM', label: 'MEDIUM' },
@@ -18,16 +21,28 @@ const MangageQuiz = () => {
           }
     }
     const handleSubmit= async()=>{
+        if(!name || !description){
+            toast.error('Name/description is required');
+            return;
+        }
         let res= await postCreateNewQuiz(description,name,type?.value,image);
-        console.log('res:',res);
+        //console.log('res:',res);
+        if(res && res.EC===0){
+            toast.success(res.EM);
+            setName('');
+            setDescription('');
+            setImage(null);
+        }else{
+            toast.error(res.EM);
+        }
     }
     return (
         <div className='quiz-container'>
-            <div className='title'>
-                Manage Quizzes
-            </div>
-            <hr></hr>
-            <div className='add-new'>
+             <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="0">
+        <Accordion.Header> Manage Quizzes</Accordion.Header>
+        <Accordion.Body>
+        <div className='add-new'>
                 <fieldset className='border rounded-3 p-3'>
                     <legend className='float-none w-auto px-3' >Add new Quiz</legend>
                     <div className="form-floating mb-3">
@@ -69,6 +84,14 @@ const MangageQuiz = () => {
                         className='btn btn-warning'>Save</button>
                     </div>
                 </fieldset>
+            </div>
+        </Accordion.Body>
+      </Accordion.Item>
+    
+    </Accordion>
+            
+            <div className='list-detail'>
+                <TableQuiz></TableQuiz>
             </div>
         </div>
     );

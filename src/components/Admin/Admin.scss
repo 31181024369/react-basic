@@ -12,6 +12,7 @@
             border: 1px solid green;
         }
         .admin-mains{
+            height: calc(100vh - 40px);
             // border: 1px solid red;
             .user-pagination{
                 display: flex;

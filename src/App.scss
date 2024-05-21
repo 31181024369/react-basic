@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+body{
+  overflow: hidden;
+}
 
 @media (min-width: 1350px){
   .container, .container-lg, .container-md, .container-sm, .container-xl{
